@@ -1,0 +1,20 @@
+.productsCard {
+    width: 400px;
+    border: 1px solid black;
+    padding: 50px 50px;
+    margin-bottom: 40px;
+    position: relative;
+    left: 32%;
+    top: 10px;
+    transition: 0.3s;
+}
+.productImage {
+    width: 300px;
+}
+.productPrice {
+    color: green;
+}
+.productsCard:hover {
+    transition: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

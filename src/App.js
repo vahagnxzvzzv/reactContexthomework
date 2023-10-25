@@ -1,23 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import ProductDesc from './components/ProductDesc/ProductDesc';
+
+const instance = axios.create({
+  baseURL: 'https://fakestoreapi.com'
+})
+
+export const productsContext = createContext(null)
 
 function App() {
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    instance.get('/products')
+    .then(products => setProducts(products.data));
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <productsContext.Provider value={products}>
+        <ProductDesc />
+      </productsContext.Provider>
     </div>
   );
 }
